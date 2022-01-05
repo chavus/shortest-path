@@ -4,8 +4,12 @@ from lib.fastest_route import get_all_paths, get_shortest_path, get_distance
 from operator import itemgetter
 import json
 from urllib import parse
+from flask_cors import CORS
+
 
 app = Flask(__name__, static_url_path='', static_folder='frontend/build')
+CORS(app)
+
 
 @app.route("/api/fastest-route")
 def api_fastest_route():
@@ -43,6 +47,10 @@ def fastest_route():
     body = request.json['bool']
     print(matrix2)
     return 'hello'
+
+@app.route("/api-test")
+def api_test():
+    return {'success':True, 'value':'String from API'}
 
 @app.route('/')
 def home():
